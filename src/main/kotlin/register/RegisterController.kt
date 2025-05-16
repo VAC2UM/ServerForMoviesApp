@@ -36,7 +36,6 @@ class RegisterController(val call: ApplicationCall) {
             }
             Tokens.insert(
                 TokenDTO(
-                    rowId = UUID.randomUUID().toString(),
                     login = registerRecieveRemote.login,
                     token = token
                 )
