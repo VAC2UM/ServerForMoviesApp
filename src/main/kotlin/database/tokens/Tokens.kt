@@ -13,7 +13,7 @@ object Tokens : Table("tokens") {
         transaction {
             Tokens.insert {
                 it[login] = tokenDTO.login
-                it[id] = tokenDTO.rowId
+//                it[id] = tokenDTO.rowId
                 it[token] = tokenDTO.token
             }
         }

@@ -21,7 +21,7 @@ class LoginController(private val call: ApplicationCall) {
                 val token = UUID.randomUUID().toString()
                 Tokens.insert(
                     TokenDTO(
-                        rowId = UUID.randomUUID().toString(),
+//                        rowId = UUID.randomUUID().toString(),
                         login = recieve.login,
                         token = token
                     )
