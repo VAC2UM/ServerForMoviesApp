@@ -7,7 +7,7 @@ import org.jetbrains.exposed.sql.transactions.transaction
 
 object Users : Table("users") {
     val login = varchar("login", 25)
-    val password = varchar("password", 25)
+    val password = varchar("password", 64)
     val email = varchar("email", 25)
 
     fun insert(userDTO: UserDTO) {
