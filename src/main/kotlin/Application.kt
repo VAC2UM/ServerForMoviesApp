@@ -1,5 +1,6 @@
 package com.example
 
+import com.example.favorite.configureFavoritesRouting
 import com.example.login.configureLoginRouting
 import com.example.register.configureRegisterRouting
 import io.ktor.server.application.*
@@ -19,6 +20,7 @@ fun Application.module() {
     configureRouting()
     configureLoginRouting()
     configureRegisterRouting()
+    configureFavoritesRouting()
 }
 
 fun Application.configureDatabase() {

@@ -1,5 +1,6 @@
 package com.example.database.tokens
 
+import org.jetbrains.exposed.sql.SqlExpressionBuilder.eq
 import org.jetbrains.exposed.sql.Table
 import org.jetbrains.exposed.sql.insert
 import org.jetbrains.exposed.sql.transactions.transaction
@@ -15,6 +16,15 @@ object Tokens : Table("tokens") {
                 it[login] = tokenDTO.login
                 it[token] = tokenDTO.token
             }
+        }
+    }
+
+    fun getLoginByToken(token: String): String? {
+        return transaction {
+            Tokens.select(Tokens.login)
+                .where { Tokens.token eq token }
+                .singleOrNull()
+                ?.get(Tokens.login)
         }
     }
 }
