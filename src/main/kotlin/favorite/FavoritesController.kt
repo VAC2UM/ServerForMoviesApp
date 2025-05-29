@@ -23,7 +23,14 @@ class FavoritesController(private val call: ApplicationCall) {
             return
         }
 
-        val success = Favorites.insert(FavoriteDTO(userLogin, receive.movieId))
+        val success = Favorites.insert(
+            FavoriteDTO(
+                userLogin = userLogin,
+                movieId = receive.movieId,
+                movieTitle = receive.movieTitle,
+                moviePoster = receive.moviePoster
+            )
+        )
 
         if (success) {
             call.respond(HttpStatusCode.OK, "Movie added to favorites")
@@ -39,7 +46,13 @@ class FavoritesController(private val call: ApplicationCall) {
             return
         }
 
-        val favorites = Favorites.getFavoritesByUser(userLogin)
+        val favorites = Favorites.getFavoritesByUser(userLogin).map {
+            FavoriteItemRemote(
+                movieId = it.movieId,
+                movieTitle = it.movieTitle,
+                moviePoster = it.moviePoster
+            )
+        }
         call.respond(FavoriteResponseRemote(favorites))
     }
 }
